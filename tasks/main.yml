@@ -10,7 +10,7 @@
 
 - name: Download PhpMetrics.
   get_url:
-    url: {{ phpmetrics_url }}
+    url: "{{ phpmetrics_url }}"
     dest: /tmp/phpmetrics.phar
     mode: 0755
   when: not phpmetrics_bin.stat.exists
