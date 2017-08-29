@@ -1,0 +1,3 @@
+---
+phpmetrics_path: /usr/local/bin/phpmetrics
+phpmetrics_url: 'https://github.com/phpmetrics/PhpMetrics/blob/master/build/phpmetrics.phar?raw=true'

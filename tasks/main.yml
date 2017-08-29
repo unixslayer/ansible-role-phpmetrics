@@ -1,0 +1,22 @@
+---
+- name: Set php_executable variable to a default if not defined.
+  set_fact:
+    php_executable: php
+  when: php_executable is not defined
+
+- name: Check if PhpMetrics is installed.
+  stat: "path={{ phpmetrics_path }}"
+  register: phpmetrics_bin
+
+- name: Download PhpMetrics.
+  get_url:
+    url: {{ phpmetrics_url }}
+    dest: /tmp/phpmetrics.phar
+    mode: 0755
+  when: not phpmetrics_bin.stat.exists
+
+- name: Move PhpMetrics into globally-accessible location.
+  shell: >
+    mv /tmp/phpmetrics.phar {{ phpmetrics_path }}
+    creates={{ phpmetrics_path }}
+  when: not phpmetrics_bin.stat.exists
